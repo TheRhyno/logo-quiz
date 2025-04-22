@@ -1380,6 +1380,16 @@ document.getElementById("replayBtn").style.display = "inline";
   }, 1500);
 }
 
+
+function clean(str) {
+  return str
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "") // supprime les accents
+    .toLowerCase()
+    .replace(/\s/g, ""); // supprime les espaces
+}
+
+
 function levenshtein(a, b) {
   const matrix = Array.from({ length: b.length + 1 }, (_, i) =>
     Array(a.length + 1).fill(0)
@@ -1404,17 +1414,26 @@ function levenshtein(a, b) {
 
 
 function checkAnswer() {
-  const userAnswer = document.getElementById("answer").value.trim().toLowerCase();
+const userAnswerRaw = document.getElementById("answer").value;
+const userAnswer = clean(userAnswerRaw);
   const q = questions[currentQuestion];
-  const correct = q.answer.toLowerCase();
+const correct = clean(q.answer);
+const distance = levenshtein(userAnswer, correct);
+const isCorrect = distance <= 2;
+
 
 if (levenshtein(userAnswer, correct) <= 2) {
   document.getElementById(q.soundId).play();
   score++;
   document.getElementById("score").textContent = "Score : " + score;
 
-  resultElement.textContent = "✅ Bonne réponse !";
+  let message = "✅ Bonne réponse !";
+  if (userAnswer !== correct) {
+    message += " (mal orthographiée, mais acceptée)";
+  }
+  resultElement.textContent = message;
   resultElement.style.color = "green";
+
 
   const image2 = document.getElementById("image2");
 
