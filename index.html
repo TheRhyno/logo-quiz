@@ -25,6 +25,12 @@
       font-weight: bold;
     }
 
+#image {
+  max-width: 300px;
+  margin: 20px auto;
+  display: block;
+}
+
 .progress-bar-container {
   width: 100%;
   height: 10px;
@@ -72,6 +78,7 @@
 </div>
 
 <img id="image" src="" alt="image à deviner">
+<img id="image2" src="" style="display: none; max-width: 300px; margin-bottom: 10px;" />
 <p id="description"></p>
 
 <input type="text" id="answer" placeholder="Ta réponse ici">
@@ -98,7 +105,7 @@
   <audio id="sound4" src=""></audio>
   <audio id="sound5" src=""></audio>
   <audio id="sound6" src=""></audio>
-  <audio id="sound7" src="3"></audio>
+  <audio id="sound7" src=""></audio>
   <audio id="sound8" src=""></audio>
   <audio id="sound9" src=""></audio>
 
@@ -108,7 +115,7 @@
 
 
   <script>
-    const questions = [
+const questions = [
       {
         image: "https://eu-images.contentstack.com/v3/assets/blt5004e64d3579c43f/blt6243759afdfd4588/61e5b45c35e87a3ac8bc4840/Logo_France_Mcdo.png",
         description: "",
@@ -134,49 +141,65 @@
         soundId: "sound4"
       },
       {
-        image: "https://1000marcas.net/wp-content/uploads/2024/02/Adidas-Logo.png",
+        images: [ "https://1000marcas.net/wp-content/uploads/2024/02/Adidas-Logo.png",
+               "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIO9HvRepmQOPQJtDj-jBhpxzG3DGQDZuYWA&s"
+],
         description: "",
         answer: "adidas",
         soundId: "sound5"
       },
       {
-        image: "https://logo-marque.com/wp-content/uploads/2021/09/Nintendo-Switch-Embleme.jpg",
+        images: ["https://logo-marque.com/wp-content/uploads/2021/09/Nintendo-Switch-Embleme.jpg",
+                 "https://upload.wikimedia.org/wikipedia/commons/3/38/Nintendo_switch_logo.png"
+],
         description: "",
         answer: "nintendo switch",
         soundId: "sound6"
       },
       {
-        image: "https://graphiste.com/blog/wp-content/uploads/sites/4/2019/05/logo-lacoste-crocodile.png",
+        images: ["https://graphiste.com/blog/wp-content/uploads/sites/4/2019/05/logo-lacoste-crocodile.png",
+                 "https://www.press-agrum.com/wp-content/uploads/2024/02/logo-lacoste-1-1024x460.jpg"
+],
         description: "",
         answer: "lacoste",
         soundId: "sound7"
       },
       {
-        image: "https://upload.wikimedia.org/wikipedia/fr/thumb/d/d3/Starbucks_Corporation_Logo_2011.svg/1200px-Starbucks_Corporation_Logo_2011.svg.png",
+        images: ["https://upload.wikimedia.org/wikipedia/fr/thumb/d/d3/Starbucks_Corporation_Logo_2011.svg/1200px-Starbucks_Corporation_Logo_2011.svg.png",
+                  "https://s3-eu-west-1.amazonaws.com/tpd/logos/4bc7c5a20000640005055828/0x0.png"
+],
         description: "",
         answer: "Starbucks",
         soundId: "sound8"
       },
       {
-        image: "https://pbs.twimg.com/profile_images/1861755904640602112/y75mKNU5_400x400.jpg",
+        images: ["https://pbs.twimg.com/profile_images/1861755904640602112/y75mKNU5_400x400.jpg",
+                 "https://s3-eu-west-1.amazonaws.com/tpd/logos/4bc7c5a20000640005055828/0x0.png"
+],
         description: "",
         answer: "decathlon",
         soundId: "sound9"
       },
       {
-        image: "https://www.jetpunk.com/img/user-img/1a/1a5ded67a8-450.webp",
+        images: ["https://www.jetpunk.com/img/user-img/1a/1a5ded67a8-450.webp",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSi1YUsojqPKLq9Z4Ey3w_TEJ-XZHA4Y4Jjuw&s"
+],
         description: "",
         answer: "burger king",
         soundId: "sound9"
       },
       {
-        image: "https://pngdownload.io/wp-content/uploads/2023/12/Reddit-Logo-emblem-of-the-online-platform-transparent-png-image-jpg.webp",
+        images: ["https://pngdownload.io/wp-content/uploads/2023/12/Reddit-Logo-emblem-of-the-online-platform-transparent-png-image-jpg.webp",
+                 "https://www.logo.wine/a/logo/Reddit/Reddit-Vertical-Color-Logo.wine.svg"
+],
         description: "",
         answer: "reddit",
         soundId: "sound9"
       },
       {
-        image: "https://www.1min30.com/wp-content/uploads/2018/06/Bic-logo-500x281.jpg",
+        images: ["https://www.1min30.com/wp-content/uploads/2018/06/Bic-logo-500x281.jpg",
+                  "https://www.1min30.com/wp-content/uploads/2018/06/Symbole-Bic.jpg"
+],
         description: "",
         answer: "bic",
         soundId: "sound9"
@@ -188,55 +211,73 @@
         soundId: "sound9"
       },
       {
-        image: "https://cdn.worldvectorlogo.com/logos/credit-agricole-3.svg",
+        images: ["https://cdn.worldvectorlogo.com/logos/credit-agricole-3.svg",
+                 "https://www.francetransactions.com/IMG/arton50098.jpg"
+],
         description: "",
         answer: "credit agricole",
         soundId: "sound9"
       },
       {
-        image: "https://static.wikia.nocookie.net/logo-quiz/images/6/6a/Lv3_number_28_.png/revision/latest/scale-to-width-down/300?cb=20221012163138",
+        images: ["https://static.wikia.nocookie.net/logo-quiz/images/6/6a/Lv3_number_28_.png/revision/latest/scale-to-width-down/300?cb=20221012163138",
+                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9KjQK4Kr3nighE5xzjrI71WcR21M9-Fn0wA&s"
+],
         description: "",
         answer: "oreo",
         soundId: "sound9"
       },
       {
-        image: "https://www.jetpunk.com/img/user-img/17/176a1a12ff-450.webp",
+        images: ["https://www.jetpunk.com/img/user-img/17/176a1a12ff-450.webp",
+                 "https://logo-marque.com/wp-content/uploads/2020/09/IKEA-Logo-1982-2019.png"
+],
         description: "",
         answer: "ikea",
         soundId: "sound9"
       },
       {
-        image: "https://media.baamboozle.com/uploads/images/9571/1535692427_55916",
+        images: ["https://media.baamboozle.com/uploads/images/9571/1535692427_55916",
+                 "https://logo-marque.com/wp-content/uploads/2020/08/Dell-Logo-2010-2016.png"
+],
         description: "",
         answer: "dell",
         soundId: "sound9"
       },
       {
-        image: "https://e7.pngegg.com/pngimages/451/464/png-clipart-mr-clean-brand-meme-game-proper-adjective-physical-fitness-english-thumbnail.png",
+        images: ["https://e7.pngegg.com/pngimages/451/464/png-clipart-mr-clean-brand-meme-game-proper-adjective-physical-fitness-english-thumbnail.png",
+                 "https://comment-faire.blog/wp-content/uploads/2023/11/brq6rb6yi2os56bjuqgyzz2lbx6jc3sachvcdoaizecfr3dnitcq_3_0-1.png"
+],
         description: "",
         answer: "mr propre",
         soundId: "sound9"
       },
       {
-        image: "https://www.logoquiz.net/logos/Coca-Cola_hint.svg",
+        images: ["https://www.logoquiz.net/logos/Coca-Cola_hint.svg",
+                 "https://static.vecteezy.com/ti/vecteur-libre/p1/14414677-logo-coca-cola-sur-fond-transparent-gratuit-vectoriel.jpg"
+],
         description: "",
         answer: "coca cola",
         soundId: "sound9"
       },
       {
-        image: "https://www.quizz.biz/uploads/quizz/1543546/orig/1.jpg?1608312951",
+        images: ["https://www.quizz.biz/uploads/quizz/1543546/orig/1.jpg?1608312951",
+                 "https://ambigram.fr/wp-content/uploads/2023/01/logo-netflix-1024x329.jpg"
+],
         description: "",
         answer: "netflix",
         soundId: "sound9"
       },
       {
-        image: "https://img.freepik.com/vecteurs-premium/logo-tiktok_628407-1683.jpg?semt=ais_hybrid&w=740",
+        images: ["https://img.freepik.com/vecteurs-premium/logo-tiktok_628407-1683.jpg?semt=ais_hybrid&w=740",
+                 "https://cdn.shopify.com/s/files/1/0249/6376/files/tiktok2_5381bbf7-d33d-4c31-9cbd-6dad2ef3b2ce.jpg?v=1742135903"
+],
         description: "",
         answer: "tiktok",
         soundId: "sound9"
       },
       {
-        image: "https://static.wikia.nocookie.net/among-us/images/3/35/Among_Us_Icon.png/revision/latest?cb=20220127210916&path-prefix=fr",
+        images: ["https://static.wikia.nocookie.net/among-us/images/3/35/Among_Us_Icon.png/revision/latest?cb=20220127210916&path-prefix=fr",
+                 "https://logos-marques.com/wp-content/uploads/2022/07/Among-Us-Logo.png"
+],
         description: "",
         answer: "among us",
         soundId: "sound9"
@@ -254,133 +295,177 @@
         soundId: "sound9"
       },
       {
-        image: "https://logo-marque.com/wp-content/uploads/2020/12/Discord-Embleme.jpg",
+        images: ["https://logo-marque.com/wp-content/uploads/2020/12/Discord-Embleme.jpg",
+                 "https://upload.wikimedia.org/wikipedia/fr/thumb/9/98/Discord_logo.svg/2560px-Discord_logo.svg.png"
+],
         description: "",
         answer: "discord",
         soundId: "sound9"
       },
       {
-        image: "https://www.quizz.biz/uploads/quizz/794333/orig/1.jpg?1479677304",
+        images: ["https://www.quizz.biz/uploads/quizz/794333/orig/1.jpg?1479677304",
+                 "https://i0.wp.com/www.marketing-pgc.com/wp-content/uploads/2015/09/bandeau-charal.png?fit=1000%2C298&ssl=1"
+],
         description: "",
         answer: "charal",
         soundId: "sound9"
       },
       {
-        image: "https://cdn.worldvectorlogo.com/logos/la-vache-qui-rit.svg",
+        images: ["https://cdn.worldvectorlogo.com/logos/la-vache-qui-rit.svg",
+                 "https://w7.pngwing.com/pngs/304/816/png-transparent-la-vache-qui-rit-hd-logo-thumbnail.png"
+],
         description: "",
         answer: "La vache qui rit",
         soundId: "sound9"
       },
       {
-        image: "https://cdn.pixabay.com/photo/2021/09/11/18/21/youtube-6616310_1280.png",
+        images: ["https://cdn.pixabay.com/photo/2021/09/11/18/21/youtube-6616310_1280.png",
+                 "https://cdn.prod.website-files.com/620ab0352873b0fd6f9428de/651452e52174a0aa21e04c4c_Youtube.webp"
+],
         description: "",
         answer: "youtube",
         soundId: "sound9"
       },
       {
-        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Domino%27s_pizza_logo.svg/1018px-Domino%27s_pizza_logo.svg.png",
+        images: ["https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Domino%27s_pizza_logo.svg/1018px-Domino%27s_pizza_logo.svg.png",
+                 "https://logodownload.org/wp-content/uploads/2021/07/dominos-pizza-logo-1.png"
+],
         description: "",
         answer: "domino's pizza",
         soundId: "sound9"
       },
       {
-        image: "https://www.quizz.fr/files/2014/04/3-294x300.jpg",
+        images: ["https://www.quizz.fr/files/2014/04/3-294x300.jpg",
+                 "https://upload.wikimedia.org/wikipedia/fr/thumb/d/d9/Chupa-chups.svg/1200px-Chupa-chups.svg.png"
+],
         description: "",
         answer: "Chupa Chups",
         soundId: "sound9"
       },
       {
-        image: "https://media.baamboozle.com/uploads/images/181675/1621598986_112281.png",
+        images: ["https://media.baamboozle.com/uploads/images/181675/1621598986_112281.png",
+                 "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Lay%27s_logo_2019.svg/1200px-Lay%27s_logo_2019.svg.png"
+],
         description: "",
         answer: "lay's",
         soundId: "sound9"
       },
       {
-        image: "https://e7.pngegg.com/pngimages/388/215/png-clipart-monster-energy-logo-monster-energy-energy-drink-monster-beverage-logo-claw-miscellaneous-sticker.png",
+        images: ["https://e7.pngegg.com/pngimages/388/215/png-clipart-monster-energy-logo-monster-energy-energy-drink-monster-beverage-logo-claw-miscellaneous-sticker.png",
+                 "https://upload.wikimedia.org/wikipedia/fr/thumb/d/d4/Logo_Monster_Energy.webp/800px-Logo_Monster_Energy.webp.png"
+],
         description: "",
         answer: "monster",
         soundId: "sound9"
       },
       {
-        image: "https://www.itouchapps.net/images/whats-that-logo/mars.png",
+        images: ["https://www.itouchapps.net/images/whats-that-logo/mars.png",
+                 "https://www.marsbar.ca/sites/g/files/fnmzdf1101/files/Mars_Logo_TransparentBG.png"
+],
         description: "",
         answer: "mars",
         soundId: "sound9"
       },
       {
-        image: "https://static.wikia.nocookie.net/logo-quiz/images/1/1d/Lv5_number_44_.png/revision/latest/scale-to-width-down/300?cb=20221012164647",
+        images: ["https://static.wikia.nocookie.net/logo-quiz/images/1/1d/Lv5_number_44_.png/revision/latest/scale-to-width-down/300?cb=20221012164647",
+                 "https://logo-marque.com/wp-content/uploads/2020/09/Pepsi-Logo.png"
+],
         description: "",
         answer: "pepsi",
         soundId: "sound9"
       },
       {
-        image: "https://i.pinimg.com/736x/cb/aa/1d/cbaa1ddbd5bc12e75d1f127efae22e23.jpg",
+        images: ["https://i.pinimg.com/736x/cb/aa/1d/cbaa1ddbd5bc12e75d1f127efae22e23.jpg",
+                 "https://logo-marque.com/wp-content/uploads/2020/09/Nestle-Logo.png"
+],
         description: "",
         answer: "nestlé",
         soundId: "sound9"
       },
       {
-        image: "https://pbs.twimg.com/media/E0prPP8WUAAh8Rb.png",
+        images: ["https://pbs.twimg.com/media/E0prPP8WUAAh8Rb.png",
+                 "https://1000logos.net/wp-content/uploads/2020/09/Tic-Tac-Logo-2006.png"
+],
         description: "",
         answer: "tic tac",
         soundId: "sound9"
       },
       {
-        image: "https://logosquiz.net/data/logosquiz-aticod/images/kitkat.png",
+        images: ["https://logosquiz.net/data/logosquiz-aticod/images/kitkat.png",
+                 "https://upload.wikimedia.org/wikipedia/fr/thumb/c/c9/KitKat_logo.svg/2560px-KitKat_logo.svg.png"
+],
         description: "",
         answer: "kit kat",
         soundId: "sound9"
       },
       {
-        image: "https://images.icon-icons.com/2699/PNG/512/minecraft_logo_icon_168974.png",
+        images: ["https://images.icon-icons.com/2699/PNG/512/minecraft_logo_icon_168974.png",
+                 "https://thumbs.dreamstime.com/b/logo-minecraft-la-conception-de-l-avant-projet-d-illustrations-bloc-salet%C3%A9-jeu-en-ligne-isol%C3%A9-186775550.jpg"
+],
         description: "",
         answer: "minecraft",
         soundId: "sound9"
       },
       {
-        image: "https://i.pinimg.com/736x/8d/4f/bc/8d4fbce37a4aa57c805a2d3e1717c505.jpg",
+        images: ["https://i.pinimg.com/736x/8d/4f/bc/8d4fbce37a4aa57c805a2d3e1717c505.jpg",
+                 "https://www.citypng.com/public/uploads/preview/hd-brawl-stars-logo-png-701751694787807fgd2stdjjh.png"
+],
         description: "",
         answer: "brawl stars",
         soundId: "sound9"
       },
       {
-        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/2048px-Microsoft_logo.svg.png",
+        images: ["https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/2048px-Microsoft_logo.svg.png",
+                 "https://cdn.pixabay.com/photo/2013/02/12/09/07/microsoft-80658_1280.png"
+],
         description: "",
         answer: "microsoft",
         soundId: "sound9"
       },
       {
-        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spotify_logo_without_text.svg/800px-Spotify_logo_without_text.svg.png",
+        images: ["https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spotify_logo_without_text.svg/800px-Spotify_logo_without_text.svg.png",
+                 "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Spotify_logo_with_text.svg/1280px-Spotify_logo_with_text.svg.png"
+],
         description: "",
         answer: "spotify",
         soundId: "sound9"
       },
       {
-        image: "https://companieslogo.com/img/orig/DEEZR.PA-dbdcf2cf.png?t=1721547851",
+        images: ["https://companieslogo.com/img/orig/DEEZR.PA-dbdcf2cf.png?t=1721547851",
+                 "https://mma.prnewswire.com/media/2269448/Deezer_Logo.jpg?p=facebook"
+],
         description: "",
         answer: "deezer",
         soundId: "sound9"
       },
       {
-        image: "https://sm.ign.com/ign_fr/cover/p/paramount-/paramount-plus_x3pn.jpg",
+        images: ["https://sm.ign.com/ign_fr/cover/p/paramount-/paramount-plus_x3pn.jpg",
+                "https://cdn.sortiraparis.com/images/80/69688/1109323-logo-paramount.jpg"
+],
         description: "",
         answer: "paramount",
         soundId: "sound9"
       },
       {
-        image: "https://img.over-blog-kiwi.com/1/49/54/19/20200716/ob_daf4fd_nouveau-picto-icone-waze-2020-logo-ico.png",
+        images: ["https://img.over-blog-kiwi.com/1/49/54/19/20200716/ob_daf4fd_nouveau-picto-icone-waze-2020-logo-ico.png",
+                 "https://pentagram-production.imgix.net/b695e6d0-864c-49f7-8290-ea973d012d0e/LogotypeWazer_Lockups_02-04.jpg?rect=194%2C0%2C3603%2C2251&w=880&fit=crop&fm=jpg&q=70&auto=format&h=548"
+],
         description: "",
         answer: "wase",
         soundId: "sound9"
       },
       {
-        image: "https://img.freepik.com/vecteurs-premium/logo-twitch_578229-259.jpg?semt=ais_hybrid&w=740",
+        images: ["https://img.freepik.com/vecteurs-premium/logo-twitch_578229-259.jpg?semt=ais_hybrid&w=740",
+                "https://www.shutterstock.com/image-vector/social-media-twitch-logo-editorial-260nw-2411284527.jpg"
+],
         description: "",
         answer: "twitch",
         soundId: "sound9"
       },
       {
-        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Safari_browser_logo.svg/2057px-Safari_browser_logo.svg.png",
+        images: ["https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Safari_browser_logo.svg/2057px-Safari_browser_logo.svg.png",
+                "https://images.icon-icons.com/2699/PNG/512/apple_safari_logo_icon_170535.png"
+],
         description: "",
         answer: "safari",
         soundId: "sound9"
@@ -392,43 +477,57 @@
         soundId: "sound9"
       },
       {
-        image: "https://www.decoracing.com/1106-large_default/michelin-bibendum-le-pneu.jpg",
+        images: ["https://www.decoracing.com/1106-large_default/michelin-bibendum-le-pneu.jpg",
+                 "https://logo-marque.com/wp-content/uploads/2020/09/Michelin-Logo.png"
+],
         description: "",
         answer: "michelin",
         soundId: "sound9"
       },
       {
-        image: "https://logo-marque.com/wp-content/uploads/2020/11/PlayStation-Logo-2009-present.png",
+        images: ["https://logo-marque.com/wp-content/uploads/2020/11/PlayStation-Logo-2009-present.png",
+                 "https://seeklogo.com/images/P/playstation-logo-A0C982AADE-seeklogo.com.png"
+],
         description: "",
         answer: "playstation",
         soundId: "sound9"
       },
       {
-        image: "https://get-picto.com/wp-content/uploads/2024/04/logo-pinterest-vectoriel-420x420.webp",
+        images: ["https://get-picto.com/wp-content/uploads/2024/04/logo-pinterest-vectoriel-420x420.webp",
+                 "https://logo-marque.com/wp-content/uploads/2020/09/Pinterest-Logo-2016-present.png"
+],
         description: "",
         answer: "pinterest",
         soundId: "sound9"
       },
       {
-        image: "https://w7.pngwing.com/pngs/527/442/png-transparent-puma-logo-iron-on-adidas-brand-adidas-mammal-cat-like-mammal-carnivoran.png",
+        images: ["https://w7.pngwing.com/pngs/527/442/png-transparent-puma-logo-iron-on-adidas-brand-adidas-mammal-cat-like-mammal-carnivoran.png",
+                "https://logo-marque.com/wp-content/uploads/2020/04/Puma-Logo-1978-1980.jpg"
+],
         description: "",
         answer: "puma",
         soundId: "sound9"
       },
       {
-        image: "https://www.testkitchen.com.hk/wp-content/uploads/2019/12/Logo-Louis-Vuitton.png",
+        images: ["https://www.testkitchen.com.hk/wp-content/uploads/2019/12/Logo-Louis-Vuitton.png",
+                 "https://logo-marque.com/wp-content/uploads/2020/04/Louis-Vuitton-Logo-650x366.png"
+],
         description: "",
         answer: "louis vuitton",
         soundId: "sound9"
       },
       {
-        image: "https://i.pinimg.com/474x/ea/1f/2c/ea1f2c121064404c99aee30c6abc71da.jpg",
+        images: ["https://i.pinimg.com/474x/ea/1f/2c/ea1f2c121064404c99aee30c6abc71da.jpg",
+                "https://www.1min30.com/wp-content/uploads/2018/12/Symbole-Timberland.jpg"
+],
         description: "",
         answer: "timberland",
         soundId: "sound9"
       },
       {
-        image: "https://media.graphiline.com/src/images/news/articles/ima-image-34349.png",
+        images: ["https://media.graphiline.com/src/images/news/articles/ima-image-34349.png",
+                 "https://i.pinimg.com/736x/83/00/65/83006546a378b74d8f3bd54836fcf0da.jpg"
+],
         description: "",
         answer: "toyota",
         soundId: "sound9"
@@ -440,31 +539,41 @@
         soundId: "sound9"
       },
       {
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDvcL_AAgq7I7f7MuUA67Q8qxUU8e5F0jTdHIK3xlDCom8ey-vcWONq55xcbszgST2IZM&usqp=CAU",
+        images: ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDvcL_AAgq7I7f7MuUA67Q8qxUU8e5F0jTdHIK3xlDCom8ey-vcWONq55xcbszgST2IZM&usqp=CAU",
+                 "https://logo-marque.com/wp-content/uploads/2020/04/Ralph-Lauren-Logo-650x366.png"
+],
         description: "",
         answer: "ralph lauren",
         soundId: "sound9"
       },
       {
-        image: "https://companieslogo.com/img/orig/CA.PA-eef56ff6.png?t=1720244491",
+        images: ["https://companieslogo.com/img/orig/CA.PA-eef56ff6.png?t=1720244491",
+                "https://logo-marque.com/wp-content/uploads/2020/11/Carrefour-Logo-650x366.png"
+],
         description: "",
         answer: "carrefour",
         soundId: "sound9"
       },
       {
-        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/800px-Wikipedia-logo-v2.svg.png",
+        images: ["https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/800px-Wikipedia-logo-v2.svg.png",
+                 "https://logo-marque.com/wp-content/uploads/2020/09/Wikipedia-Logo-650x366.png"
+],
         description: "",
         answer: "wikipédia",
         soundId: "sound9"
       },
       {
-        image: "https://img.icons8.com/?size=512&id=115213&format=png",
+        images: ["https://img.icons8.com/?size=512&id=115213&format=png",
+                "https://logo-marque.com/wp-content/uploads/2020/04/Huawei-Logo-650x366.png"
+],
         description: "",
         answer: "huawei",
         soundId: "sound9"
       },
       {
-        image: "https://logo-marque.com/wp-content/uploads/2020/06/Adobe-Embleme.jpg",
+        images: ["https://logo-marque.com/wp-content/uploads/2020/06/Adobe-Embleme.jpg",
+                "https://logo-marque.com/wp-content/uploads/2020/07/Adobe-Logo-650x366.png"
+],
         description: "",
         answer: "adobe",
         soundId: "sound9"
@@ -482,121 +591,161 @@
         soundId: "sound9"
       },
       {
-        image: "https://www.economiecirculaire.org/data/sources/users/5793/applikingjouet.jpg",
+        images: ["https://www.economiecirculaire.org/data/sources/users/5793/applikingjouet.jpg",
+                 "https://www.lsa-conso.fr/mediatheque/2/3/5/000230532_1200x800_c.jpg"
+],
         description: "",
         answer: "king jouet",
         soundId: "sound9"
       },
       {
-        image: "https://slicedesign.co.uk/wp-content/uploads/2017/02/char-edit-sam-610x201.jpg",
+        images: ["https://slicedesign.co.uk/wp-content/uploads/2017/02/char-edit-sam-610x201.jpg",
+                "https://logo-marque.com/wp-content/uploads/2020/04/Samsung-Logo-1993-2005-650x366.jpg"
+],
         description: "",
         answer: "samsung",
         soundId: "sound9"
       },
       {
-        image: "https://pbs.twimg.com/media/GM92wOka8AA7g49.jpg",
+        images: ["https://pbs.twimg.com/media/GM92wOka8AA7g49.jpg",
+                 "https://logo-marque.com/wp-content/uploads/2020/04/Levis-Logo-650x366.png"
+],
         description: "",
         answer: "levi's",
         soundId: "sound9"
       },
       {
-        image: "https://img.freepik.com/vecteurs-premium/illustration-vectorielle-icone-medias-sociaux-facebook_534308-21672.jpg?semt=ais_hybrid&w=740",
+        images: ["https://img.freepik.com/vecteurs-premium/illustration-vectorielle-icone-medias-sociaux-facebook_534308-21672.jpg?semt=ais_hybrid&w=740",
+                 "https://logo-marque.com/wp-content/uploads/2020/04/Facebook-Logo-2019-....-650x366.jpg"
+],
         description: "",
         answer: "facebook",
         soundId: "sound9"
       },
       {
-        image: "https://logo-marque.com/wp-content/uploads/2020/08/Bosch-Symbole.png",
+        images: ["https://logo-marque.com/wp-content/uploads/2020/08/Bosch-Symbole.png",
+                 "https://logo-marque.com/wp-content/uploads/2020/08/Bosch-Logo-650x366.png"
+],
         description: "",
         answer: "bosch",
         soundId: "sound9"
       },
       {
-        image: "https://companieslogo.com/img/orig/EDF.PA-e401b7b4.png?t=1720244491",
+        images: ["https://companieslogo.com/img/orig/EDF.PA-e401b7b4.png?t=1720244491",
+                 "https://images.lesindesradios.fr/filters:format(webp)/medias/Xokg9kVJLL/image/Logo_EDF1664902171510.png"
+],
         description: "",
         answer: "edf",
         soundId: "sound9"
       },
       {
-        image: "https://api.triviacreator.com/v1/imgs/quiz/Danone-e83a8253-ac78-42b2-93a2-c53e2b956346.png",
+        images: ["https://api.triviacreator.com/v1/imgs/quiz/Danone-e83a8253-ac78-42b2-93a2-c53e2b956346.png",
+                 "https://logo-marque.com/wp-content/uploads/2020/12/Danone-Logo-2005-2017-650x366.png"
+],
         description: "",
         answer: "danone",
         soundId: "sound9"
       },
       {
-        image: "https://i.vimeocdn.com/video/1927593602-7385234439cae4a5452fec1d755591450b1afed012efb803cfe73a2464914cd1-d?f=webp",
+        images: ["https://i.vimeocdn.com/video/1927593602-7385234439cae4a5452fec1d755591450b1afed012efb803cfe73a2464914cd1-d?f=webp",
+                 "https://logo-marque.com/wp-content/uploads/2020/04/PayPal-Logo-650x366.png"
+],
         description: "",
         answer: "paypal",
         soundId: "sound9"
       },
       {
-        image: "https://storage.canalblog.com/08/87/1356614/104684699.png",
+        images: ["https://storage.canalblog.com/08/87/1356614/104684699.png",
+                 "https://logo-marque.com/wp-content/uploads/2020/03/Air-France-Logo-650x366.png"
+],
         description: "",
         answer: "air france",
         soundId: "sound9"
       },
       {
-        image: "https://www.icon-icon.com/wp-content/uploads/2021/05/logos_325_970757.png",
+        images: ["https://www.icon-icon.com/wp-content/uploads/2021/05/logos_325_970757.png",
+                 "https://logo-marque.com/wp-content/uploads/2020/11/Rolex-Logo-650x366.png"
+],
         description: "",
         answer: "rolex",
         soundId: "sound9"
-      }, // 72
+      },
       {
-        image: "https://upload.wikimedia.org/wikipedia/commons/5/5a/Mitsubishi_logo.svg",
+        images: ["https://upload.wikimedia.org/wikipedia/commons/5/5a/Mitsubishi_logo.svg",
+                 "https://logo-marque.com/wp-content/uploads/2021/09/Mitsubishi-Logo-1970-present-650x366.jpg"
+],
         description: "",
         answer: "mitsubishi",
         soundId: "sound9"
       },
       {
-        image: "https://logos-marques.com/wp-content/uploads/2023/10/Opera-Logo.png",
+        images: ["https://logos-marques.com/wp-content/uploads/2023/10/Opera-Logo.png",
+                 "https://www-static-blogs.operacdn.com/news/wp-content/uploads/sites/2/2015/09/opera-logo.png"
+],
         description: "",
         answer: "opera",
         soundId: "sound9"
       },
       {
-        image: "https://logo-marque.com/wp-content/uploads/2021/03/La-Poste-Embleme.jpg",
+        images: ["https://logo-marque.com/wp-content/uploads/2021/03/La-Poste-Embleme.jpg",
+                "https://logo-marque.com/wp-content/uploads/2021/03/La-Poste-Logo-650x366.png"
+],
         description: "",
         answer: "la poste",
         soundId: "sound9"
       },
       {
-        image: "https://play-lh.googleusercontent.com/LiM5Q9Ql6oU0I2VKO0ywhgG16jXg-pDzrHgF6plCPKxvMMVyTrtTeUiyYlSgg5ABV_I",
+        images: ["https://play-lh.googleusercontent.com/LiM5Q9Ql6oU0I2VKO0ywhgG16jXg-pDzrHgF6plCPKxvMMVyTrtTeUiyYlSgg5ABV_I",
+                 "https://logo-marque.com/wp-content/uploads/2021/06/TotalEnergies-Logo-650x366.jpg"
+],
         description: "",
         answer: "totalenergies",
         soundId: "sound9"
       },
       {
-        image: "https://lezebre.lu/images/detailed/28/Suzuki_Logo_il4q-jq.png",
+        images: ["https://lezebre.lu/images/detailed/28/Suzuki_Logo_il4q-jq.png",
+                "https://logo-marque.com/wp-content/uploads/2021/10/Suzuki-Logo-1958-present-650x366.jpg"
+],
         description: "",
         answer: "suzuki",
         soundId: "sound9"
       },
       {
-        image: "https://www.quizz.biz/uploads/quizz/1618433/mobile/1_A6XcN.webp",
+        images: ["https://www.quizz.biz/uploads/quizz/1618433/mobile/1_A6XcN.webp",
+                "https://www.pour-nourrir-demain.fr/wp-content/uploads/2023/10/andros.jpg"
+],
         description: "",
         answer: "andros",
         soundId: "sound9"
       },
       {
-        image: "https://gravosteel.com/1998-thickbox_default/sticker-red-bull-couleurs-2.jpg",
+        images: ["https://gravosteel.com/1998-thickbox_default/sticker-red-bull-couleurs-2.jpg",
+                "https://logo-marque.com/wp-content/uploads/2020/11/Red-Bull-Logo-650x366.png"
+],
         description: "",
         answer: "red bull",
         soundId: "sound9"
       },
       {
-        image: "https://newsroom.groupebpce.fr/download-image/56680f8b9b3e9da5978b47d9",
+        images: ["https://newsroom.groupebpce.fr/download-image/56680f8b9b3e9da5978b47d9",
+                 "https://ce-prod.cloudimg.io/_images_/app/uploads/sites/22/2023/03/23162629/capture.jpg?func=crop&w=960&h=720&gravity=auto&optipress=2"
+],
         description: "",
         answer: "caisse d'epargne",
         soundId: "sound9"
       },
       {
-        image: "https://www.quizz.biz/uploads/quizz/1758397/mobile/1_882HW.webp",
+        images: ["https://www.quizz.biz/uploads/quizz/1758397/mobile/1_882HW.webp",
+                 "https://logos-marques.com/wp-content/uploads/2023/01/Rossignol-logo.jpg"
+],
         description: "",
         answer: "rossignol",
         soundId: "sound9"
       },
       {
-        image: "https://logos-marques.com/wp-content/uploads/2020/07/Lembleme-Le-Coq-Sportif.jpg",
+        images: ["https://logos-marques.com/wp-content/uploads/2020/07/Lembleme-Le-Coq-Sportif.jpg",
+                 "https://logo-marque.com/wp-content/uploads/2020/12/Le-Coq-Sportif-Logo-650x366.png"
+],
         description: "",
         answer: "le coq sportif",
         soundId: "sound9"
@@ -608,13 +757,17 @@
         soundId: "sound9"
       },
       {
-        image: "https://media.cdnws.com/_i/46016/5499/220/4/stickers-salomon-ref3-autocollant-snow-snowboard-sticker-ski-neige-sport-extreme-logo-planche-autocollants-snowboarding-decals-snowboards-sponsors-min.jpeg",
+        images: ["https://media.cdnws.com/_i/46016/5499/220/4/stickers-salomon-ref3-autocollant-snow-snowboard-sticker-ski-neige-sport-extreme-logo-planche-autocollants-snowboarding-decals-snowboards-sponsors-min.jpeg",
+                 "https://upload.wikimedia.org/wikipedia/commons/8/8a/Salomon_group_logo.png"
+],
         description: "",
         answer: "salomon",
         soundId: "sound9"
       },
       {
-        image: "https://www.logo-voiture.com/wp-content/uploads/2023/08/Hyundai-Logo-1990-1024x579.png",
+        images: ["https://www.logo-voiture.com/wp-content/uploads/2023/08/Hyundai-Logo-1990-1024x579.png",
+                 "https://logo-marque.com/wp-content/uploads/2021/03/Hyundai-Logo-2011-2017-650x366.jpg"
+],
         description: "",
         answer: "hyundai",
         soundId: "sound9"
@@ -624,12 +777,495 @@
         description: "",
         answer: "firefox",
         soundId: "sound9"
+      },
+      {
+        images: ["https://logo-marque.com/wp-content/uploads/2020/05/Mercedes-Benz-Logo-650x366.png",
+                "https://logo-marque.com/wp-content/uploads/2020/05/Mercedes-Benz-Logo-2009-pr%C3%A9sent-650x366.jpg"
+],
+        description: "",
+        answer: "mercedes",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://www.art-deco-stickers.fr/16903/stickers-autocollant-logos-embleme-citroen.jpg",
+                "https://logo-marque.com/wp-content/uploads/2021/08/Citroen-Logo-2009-2016-650x366.jpg"
+],
+        description: "(sans accent)",
+        answer: "citroen",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://logo-marque.com/wp-content/uploads/2021/02/Auchan-Logo-650x366.png",
+                "https://logo-marque.com/wp-content/uploads/2021/02/Auchan-Logo-2018-present-650x366.png"
+],
+        description: "",
+        answer: "auchan",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://logo-marque.com/wp-content/uploads/2020/09/Skype-Logo-650x366.png",
+                 "https://logo-marque.com/wp-content/uploads/2020/09/Skype-Logo-2017-2019-650x366.png"
+],
+        description: "",
+        answer: "skype",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://logowik.com/content/uploads/images/zoom-app2328.logowik.com.webp",
+                 "https://logo-marque.com/wp-content/uploads/2021/02/Zoom-Logo-650x366.png"
+],
+        description: "",
+        answer: "zoom",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Shazam_icon.svg/2048px-Shazam_icon.svg.png",
+                 "https://media.gqmagazine.fr/photos/623b057d7bb7d0e13d765855/3:2/w_1350,h_900,c_limit/shazam.jpg"
+],
+        description: "",
+        answer: "shazam",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://s3-symbol-logo.tradingview.com/foot-locker--600.png",
+                 "https://logo-marque.com/wp-content/uploads/2022/04/Foot-Locker-Logo-1988-present-650x366.jpg"
+],
+        description: "",
+        answer: "foot locker",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://upload.wikimedia.org/wikipedia/commons/7/7c/Fortnite_F_lettermark_logo.png",
+                "https://logo-marque.com/wp-content/uploads/2020/12/Fortnite-Logo-2014-present-650x366.png"
+],
+        description: "",
+        answer: "fortnite",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://seeklogo.com/images/C/clairefontaine-logo-5B1CD7A536-seeklogo.com.png",
+                "https://www.csbretignyfootball.fr/wp-content/uploads/2015/09/logo-clairefontaine1.jpg"
+],
+        description: "",
+        answer: "clairefontaine",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://play-lh.googleusercontent.com/JzFSE6MI0F_5bWcyYLXma-BiCRfRrhh1Of1qZizM3DenOa8v_1mnNiO0BoOFOAIScDA",
+                 "https://i.pinimg.com/736x/96/50/ea/9650ea14df62c89f9e94c384843d894a.jpg"
+],
+        description: "",
+        answer: "subway surfers",
+        soundId: "sound9"
+      },
+      {
+        image: "https://img.freepik.com/vecteurs-premium/telecharger-gratuitement-icone-du-logo-du-magasin-vector-clip-art-conception-graphique_1302809-544.jpg?semt=ais_hybrid&w=740",
+        description: "",
+        answer: "play store",
+        soundId: "sound9"
+      },
+      {
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/App_Store_%28iOS%29.svg/1200px-App_Store_%28iOS%29.svg.png",
+        description: "",
+        answer: "apple store",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://logo-marque.com/wp-content/uploads/2020/05/WhatsApp-Symbole-650x366.jpg",
+                 "https://logo-marque.com/wp-content/uploads/2020/06/WhatsApp-Logo-Histoire-650x276.jpg"
+],
+        description: "",
+        answer: "whatsapp",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png",
+                 "https://logo-marque.com/wp-content/uploads/2020/04/Instagram-Logo-650x366.png"
+],
+        description: "",
+        answer: "instagram",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://ih1.redbubble.net/image.4645200823.0367/st,small,507x507-pad,600x600,f8f8f8.jpg",
+                 "https://freelogopng.com/images/all_img/1681038472chatgpt-logo.png"
+],
+        description: "",
+        answer: "chatgpt",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQue83yS30BL3zaaiUduJTX-Cjm3yuOrG-BQ&s",
+                "https://www.lyceeacheuleen.fr/wp-content/uploads/2024/08/unnamed.png"
+],
+        description: "",
+        answer: "pronote",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://logonews.fr/wp-content/uploads/2021/01/Capture-d%E2%80%99e%CC%81cran-2021-01-27-a%CC%80-11.44.19.png",
+                 "https://logo-marque.com/wp-content/uploads/2020/04/Amazon-Logo-650x366.png"
+],
+        description: "",
+        answer: "amazon",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://cdn.worldvectorlogo.com/logos/duolingo-1.svg",
+                 "https://logo-marque.com/wp-content/uploads/2021/03/Duolingo-Logo-2019-present-650x366.jpg"
+],
+        description: "",
+        answer: "duolingo",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://www.internetmatters.org/wp-content/uploads/2025/04/Strava-feature.webp",
+                 "https://techmoov.fr/wp-content/uploads/2016/08/Strava-logo.jpg"
+],
+        description: "",
+        answer: "strava",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://www.1min30.com/wp-content/uploads/2018/04/logo-Bouygues.jpg",
+                 "https://media.graphiline.com/src/images/news/articles/ima-image-20017.jpg"
+],
+        description: "",
+        answer: "bouygues telecom",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://upload.wikimedia.org/wikipedia/commons/d/d7/Orange_small_logo.png",
+                "https://logo-marque.com/wp-content/uploads/2021/09/Orange-S.A.-Logo-650x366.png"
+],
+        description: "",
+        answer: "orange",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://upload.wikimedia.org/wikipedia/fr/thumb/3/37/Jumpman_logo.svg/2048px-Jumpman_logo.svg.png",
+                 "https://www.vectorkhazana.com/assets/images/products/jordan-logo.jpg"
+],
+        description: "",
+        answer: "jordan",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://images.icon-icons.com/729/PNG/512/android_icon-icons.com_62719.png",
+                 "https://logo-marque.com/wp-content/uploads/2021/08/Android-Logo-650x366.png"
+],
+        description: "",
+        answer: "android",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://i.insider.com/50083a75eab8eaba3000000c?width=800&format=jpeg&auto=webp",
+                 "https://logo-marque.com/wp-content/uploads/2021/02/UPS-Logo-2003-2014-650x366.jpg"
+],
+        description: "",
+        answer: "ups",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://api.triviacreator.com/v1/imgs/quiz/nasa-f9c280d8-248e-4f33-9788-eabb692287f2-b26eb5fb-f07f-43cf-a1c7-2b881b53e563.jpg",
+                 "https://logo-marque.com/wp-content/uploads/2020/05/NASA-Logo-650x366.png"
+],
+        description: "",
+        answer: "nasa",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://logo-marque.com/wp-content/uploads/2021/03/Chevrolet-Logo-650x366.png",
+                 "https://logo-marque.com/wp-content/uploads/2021/03/Chevrolet-Logo-2013-present-650x366.jpg"
+],
+        description: "",
+        answer: "chevrolet",
+        soundId: "sound9"
+      },
+      {
+        image: "https://logo-marque.com/wp-content/uploads/2021/03/Facebook-Messenger-Logo-650x366.png",
+        description: "",
+        answer: "messenger",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://logos-marques.com/wp-content/uploads/2021/03/Haribo-embleme.png",
+                 "https://www.1min30.com/wp-content/uploads/2018/05/Couleur-logo-Haribo.jpg"
+],
+        description: "",
+        answer: "haribo",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://logo-marque.com/wp-content/uploads/2021/11/Meta-Embleme.jpg",
+                 "https://logo-marque.com/wp-content/uploads/2021/11/Meta-Logo-650x366.png"
+],
+        description: "",
+        answer: "meta",
+        soundId: "sound9"
+      }, // 115
+      {
+        images: ["https://logosandtypes.com/wp-content/uploads/2020/11/Shopify.png",
+                 "https://logo-marque.com/wp-content/uploads/2020/11/Shopify-Logo-650x366.png"
+],
+        description: "",
+        answer: "shopify",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://www.studiokarma.fr/wp-content/uploads/2020/02/Logo_Tripadvisor_MotherDesign_Studio_Karma_Graphic_Designer_graphiste_01.jpg",
+                 "https://logo-marque.com/wp-content/uploads/2020/11/Tripadvisor-Logo-650x366.png"
+],
+        description: "",
+        answer: "tripadvisor",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://logo-marque.com/wp-content/uploads/2020/11/Xbox-Embleme-650x366.png",
+                 "https://logo-marque.com/wp-content/uploads/2020/11/Xbox-Logo-650x366.png"
+],
+        description: "",
+        answer: "xbox",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://logo-marque.com/wp-content/uploads/2021/08/Cartoon-Network-Symbole-650x366.jpg",
+                 "https://logo-marque.com/wp-content/uploads/2021/08/Cartoon-Network-Logo-2010-present-650x366.jpg"
+],
+        description: "",
+        answer: "cartoon network",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://stickair.com/18861-large_default/asics-logo.jpg",
+                 "https://logo-marque.com/wp-content/uploads/2020/03/Asics-Logo-650x366.png"
+],
+        description: "",
+        answer: "asics",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://static.vecteezy.com/system/resources/previews/027/127/598/non_2x/chanel-logo-chanel-icon-transparent-free-png.png",
+                 "https://logo-marque.com/wp-content/uploads/2020/04/Chanel-Logo-650x366.png"
+],
+        description: "",
+        answer: "chanel",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://www.quizz.biz/uploads/quizz/1470960/mobile/4_7QT98.webp",
+                "https://logo-marque.com/wp-content/uploads/2020/09/Fila-Logo-650x366.png"
+],
+        description: "",
+        answer: "fila",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://logo-marque.com/wp-content/uploads/2021/01/Kappa-Logo-1969-1978.png",
+                "https://logo-marque.com/wp-content/uploads/2021/01/Kappa-Logo-650x366.png"
+],
+        description: "",
+        answer: "kappa",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://d15.dz/images/feature_variant/52/pngwing.com.png",
+                 "https://logo-marque.com/wp-content/uploads/2020/09/New-Balance-Logo-1972-2006.png"
+],
+        description: "",
+        answer: "new balance",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://www.1min30.com/wp-content/uploads/2018/08/Quiksilver-logo-1.jpg",
+                 "https://www.1min30.com/wp-content/uploads/2018/05/Logo-Quicksilver.jpg"
+],
+        description: "",
+        answer: "quiksilver",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://logo-marque.com/wp-content/uploads/2020/04/Versace-Symbole-650x366.png",
+                 "https://logo-marque.com/wp-content/uploads/2020/04/Versace-Logo-650x366.png"
+],
+        description: "",
+        answer: "versace",
+        soundId: "sound9"
+      }, // TOUT EST BON
+      {
+        images: ["https://100-pics.net/images/answers/fr/logos/logos_6714_974772.jpeg",
+                 "https://logo-marque.com/wp-content/uploads/2022/03/Evian-Logo-650x366.png"
+],
+        description: "",
+        answer: "evian",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://media.baamboozle.com/uploads/images/414013/1642065160_35569_url.png",
+                 "https://logo-marque.com/wp-content/uploads/2020/06/Fanta-Logo-650x366.png"
+],
+        description: "",
+        answer: "fanta",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://bookends.in/wp-content/uploads/2023/01/incomplete.jpg",
+                 "https://logo-marque.com/wp-content/uploads/2020/11/Lipton-Logo-650x366.png"
+],
+        description: "",
+        answer: "lipton",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://formatted-decks.s3.amazonaws.com/image/3e28e9af-66d4-4fd9-a7f9-18afbbf493d7.jpg",
+                 "https://logo-marque.com/wp-content/uploads/2022/03/Martini-Logo-650x366.png"
+],
+        description: "",
+        answer: "martini",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://logosquiz.net/data/logoquiz-canadadroid/images/x_perrier.png",
+                 "https://logo-marque.com/wp-content/uploads/2022/03/Perrier-Embleme-650x366.jpg"
+],
+        description: "",
+        answer: "perrier",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://image.pngaaa.com/219/2632219-small.png",
+                 "https://logo-marque.com/wp-content/uploads/2022/03/Schweppes-Logo-650x366.png"
+],
+        description: "",
+        answer: "Schweppes",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://www.itouchapps.net/images/whats-that-logo/tropicana.png",
+                 "https://logo-marque.com/wp-content/uploads/2022/04/Tropicana-Logo-650x366.png"
+],
+        description: "",
+        answer: "tropicana",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://logo-marque.com/wp-content/uploads/2021/08/Champion-Logo.png",
+                 "https://logo-marque.com/wp-content/uploads/2021/08/Champion-Logo-1960-present-650x366.jpg"
+],
+        description: "",
+        answer: "champion",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://logo-marque.com/wp-content/uploads/2020/06/Converse-Logo.png",
+                "https://logo-marque.com/wp-content/uploads/2020/06/Converse-Logo-2017-Pr%C3%A9sent-650x366.jpg"
+],
+        description: "",
+        answer: "converse",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/2048px-Bitcoin.svg.png",
+                 "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Bitcoin_logo.svg/2560px-Bitcoin_logo.svg.png"
+],
+        description: "",
+        answer: "bitcoin",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://logo-marque.com/wp-content/uploads/2020/09/Mastercard-Logo.png",
+                "https://logo-marque.com/wp-content/uploads/2020/09/Mastercard-Logo-2016-2020-650x366.png"
+],
+        description: "",
+        answer: "mastercard",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://logosquiz.net/data/logoquiz-perfect/images/_448.png",
+                "https://logo-marque.com/wp-content/uploads/2022/04/Leroy-Merlin-Logo-650x366.png"
+],
+        description: "",
+        answer: "leroy merlin",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://miro.medium.com/v2/resize:fit:2400/1*8AHRDZir3K9MedVIFlqr0Q.jpeg",
+                 "https://upload.wikimedia.org/wikipedia/commons/a/a3/Basic-Fit_logo.png"
+],
+        description: "",
+        answer: "basic-fit",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://www.e-marketing.fr/Images/Breves/Breve27953.jpg",
+                 "https://www.akajoule.com/wp-content/uploads/2018/01/intermarche-logo-900x430.jpg"
+],
+        description: "(sans accent)",
+        answer: "intermarche",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://e-leclerc.scene7.com/is/image/gtinternet/39dd3cd0-4fa2-11ed-850f-13d4997487dc?op_sharpen=1&resmode=bilin&fmt=pjpeg&qlt=85&fit=fit,1&wid=750",
+                 "https://logowik.com/content/uploads/images/eleclerc4844.jpg"
+],
+        description: "",
+        answer: "leclerc",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://media.cdnws.com/_i/46016/fb%7B630%7D-7192/3752/93/ref14dacia-stickers-dacia-nouveau-logo-autocollant-voiture-sticker-dacia-nouveau-logo.jpeg",
+                 "https://www.turbo.fr/sites/default/files/2021-01/logodacia.jpg"
+],
+        description: "",
+        answer: "dacia",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://img.favpng.com/21/9/16/honda-logo-honda-civic-type-r-car-honda-cr-v-png-favpng-iSH9M91vrSjYj3D49UmkyqpJw.jpg",
+                 "https://www.logo-voiture.com/wp-content/uploads/2021/01/honda-logo-1700x1150-grand.png"
+],
+        description: "",
+        answer: "honda",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://static.vecteezy.com/ti/vecteur-libre/p1/10994435-logo-symbole-tommy-hilfiger-icone-de-conception-de-vetements-rouges-et-bleus-illustrationle-de-football-abstrait-avec-fond-blanc-gratuit-vectoriel.jpg",
+                 "https://logo-marque.com/wp-content/uploads/2020/04/Tommy-Hilfiger-Logo-650x366.png"
+],
+        description: "",
+        answer: "tommy hilfiger",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://logosquiz.net/data/logoquiz-perfect/images/_1376.png",
+                 "https://1000logos.net/wp-content/uploads/2021/10/Nivea-logo.jpg"
+],
+        description: "",
+        answer: "nivea",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://blog.waalaxy.com/wp-content/uploads/2021/01/4-1.png",
+                 "https://logo-marque.com/wp-content/uploads/2020/04/Linkedin-Logo-650x366.png"
+],
+        description: "",
+        answer: "linkedin",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://www.1min30.com/wp-content/uploads/2018/07/Symbole-Allianz.jpg",
+                 "https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/themes/2160029315/settings_images/b2e5ed-f8bc-d3a-6184-f014fdf6320_Allianz_logo_logotype.png"
+],
+        description: "",
+        answer: "allianz",
+        soundId: "sound9"
       }
     
 
     ];
 
     let currentQuestion = 0;
+    let currentImageIndex = 0;
     let score = 0;
 
     const imageElement = document.getElementById("image");
@@ -651,20 +1287,31 @@ function updateProgressBar() {
   document.getElementById("progress-bar").style.width = progress + "%";
 }
 
-    function loadQuestion() {
-      const q = questions[currentQuestion];
-      imageElement.src = q.image;
-      descriptionElement.textContent = "" + q.description;
-      document.getElementById("answer").value = "";
-      resultElement.textContent = "";
-document.getElementById("progress").textContent = `Question : ${currentQuestion + 1}/${questions.length}`;
-document.getElementById("wrongAnswerDisplay").textContent = "";
-document.getElementById("checkBtn").style.display = "inline";
-document.getElementById("skipBtn").style.display = "inline";
-updateProgressBar();
+function loadQuestion() {
+imageElement.style.display = "block";
+imageElement.src = ""; // nettoie l'image précédente
 
+  const q = questions[currentQuestion];
+  
+  if (q.images && q.images.length > 0) {
+    // Si c'est un tableau d'images, on affiche la première (ou une au hasard)
+    imageElement.src = q.images[currentImageIndex || 0]; // Utilisation de q.images
+  } else {
+    // Sinon, c'est une seule image
+    imageElement.src = q.image;
+  }
 
-    }
+  descriptionElement.textContent = "" + q.description;
+  document.getElementById("answer").value = "";
+  resultElement.textContent = "";
+  document.getElementById("progress").textContent = `Question : ${currentQuestion + 1}/${questions.length}`;
+  document.getElementById("wrongAnswerDisplay").textContent = "";
+  document.getElementById("image2").style.display = "none";
+  document.getElementById("checkBtn").style.display = "inline";
+  document.getElementById("skipBtn").style.display = "inline";
+  updateProgressBar();
+}
+
 
 // Permet de valider avec la touche Entrée
 document.getElementById("answer").addEventListener("keydown", function(event) {
@@ -731,42 +1378,97 @@ document.getElementById("replayBtn").style.display = "inline";
 
 
 
-    function checkAnswer() {
-      const userAnswer = document.getElementById("answer").value.trim().toLowerCase();
-      const q = questions[currentQuestion];
-      const correct = q.answer.toLowerCase();
+function checkAnswer() {
+  const userAnswer = document.getElementById("answer").value.trim().toLowerCase();
+  const q = questions[currentQuestion];
+  const correct = q.answer.toLowerCase();
 
-      if (userAnswer === correct) {
-        document.getElementById(q.soundId).play();
-        score++;
-        document.getElementById("score").textContent = "Score : " + score;
+if (userAnswer === correct) {
+  document.getElementById(q.soundId).play();
+  score++;
+  document.getElementById("score").textContent = "Score : " + score;
 
-        resultElement.textContent = "✅ Bonne réponse !";
-        resultElement.style.color = "green";
+  resultElement.textContent = "✅ Bonne réponse !";
+  resultElement.style.color = "green";
 
+  const image2 = document.getElementById("image2");
 
-        setTimeout(() => {
-          currentQuestion++;
-          if (currentQuestion < questions.length) {
-            loadQuestion();
-          } else {
-            imageElement.style.display = "none";
-            descriptionElement.style.display = "none";
-            document.getElementById("answer").style.display = "none";
-            document.getElementById("answer").style.display = "none";
-document.getElementById("checkBtn").style.display = "none";
-document.getElementById("skipBtn").style.display = "none";
-resultElement.innerHTML = `🎉 Bravo ! Tu as terminé toutes les questions.<br>Score final : ${score}/${questions.length}`;
-document.getElementById("replayBtn").style.display = "inline";
+  // S'il y a une image 2 dans cette question
+  if (q.images && q.images.length > 1) {
+    imageElement.src = q.images[1];
+    imageElement.style.display = "block";
 
-          }
-        }, 1500);
+    setTimeout(() => {
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        loadQuestion();
       } else {
-        resultElement.textContent = "❌ Mauvaise réponse, essaye encore.";
-        resultElement.style.color = "red";
-document.getElementById("wrongAnswerDisplay").textContent = document.getElementById("answer").value;
+        imageElement.style.display = "none";
+        descriptionElement.style.display = "none";
+        document.getElementById("answer").style.display = "none";
+        document.getElementById("checkBtn").style.display = "none";
+        document.getElementById("skipBtn").style.display = "none";
+resultElement.innerHTML = `🎉 Bravo ! Tu as terminé toutes les questions.<br>Score final : ${score}/${questions.length}`;
+        document.getElementById("replayBtn").style.display = "inline";
       }
+    }, 1500);
+
+  } else {
+    // Pas d'image 2, on passe directement à la prochaine question
+    setTimeout(() => {
+      resultElement.textContent = "";
+      resultElement.style.color = "black";
+      document.getElementById("answer").value = "";
+
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        loadQuestion();
+      } else {
+        imageElement.style.display = "none";
+        descriptionElement.style.display = "none";
+        document.getElementById("answer").style.display = "none";
+        document.getElementById("checkBtn").style.display = "none";
+        document.getElementById("skipBtn").style.display = "none";
+resultElement.innerHTML = `🎉 Bravo ! Tu as terminé toutes les questions.<br>Score final : ${score}/${questions.length}`;
+        document.getElementById("replayBtn").style.display = "inline";
+      }
+    }, 1500);
+  }
+  } else {
+    resultElement.textContent = "❌ Mauvaise réponse, essaye encore.";
+    resultElement.style.color = "red";
+    document.getElementById("wrongAnswerDisplay").textContent = document.getElementById("answer").value;
+  }
+}
+// Fonction pour le bouton "Passer" (skip)
+document.getElementById("skipBtn").addEventListener("click", function() {
+  const q = questions[currentQuestion];
+  const image2 = document.getElementById("image2");
+
+  // Si la question a une deuxième image, l'afficher
+  if (q.images && q.images.length > 1) {
+    imageElement.src = q.images[1];
+    imageElement.style.display = "block"; // Affiche la deuxième image
+  }
+
+  // Passer à la prochaine question
+  setTimeout(() => {
+    currentQuestion++;
+    if (currentQuestion < questions.length) {
+      loadQuestion();
+    } else {
+      imageElement.style.display = "none";
+      descriptionElement.style.display = "none";
+      document.getElementById("answer").style.display = "none";
+      document.getElementById("checkBtn").style.display = "none";
+      document.getElementById("skipBtn").style.display = "none";
+      resultElement.innerHTML = `🎉 Bravo ! Tu as terminé toutes les questions.<br>Score final : ${score}/${questions.length}`;
+      document.getElementById("replayBtn").style.display = "inline";
     }
+  }, 1500);
+});
+
+
 
 function restartGame() {
   shuffleArray(questions);
@@ -776,7 +1478,6 @@ function restartGame() {
 
   imageElement.style.display = "block";
 imageElement.style.display = "block";
-imageElement.style.margin = "20px auto"; // centrage
   descriptionElement.style.display = "block";
   document.getElementById("answer").style.display = "inline";
   document.querySelector("button").style.display = "inline";
