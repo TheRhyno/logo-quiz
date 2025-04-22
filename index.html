@@ -117,7 +117,9 @@
   <script>
 const questions = [
       {
-        image: "https://eu-images.contentstack.com/v3/assets/blt5004e64d3579c43f/blt6243759afdfd4588/61e5b45c35e87a3ac8bc4840/Logo_France_Mcdo.png",
+        images: ["https://eu-images.contentstack.com/v3/assets/blt5004e64d3579c43f/blt6243759afdfd4588/61e5b45c35e87a3ac8bc4840/Logo_France_Mcdo.png",
+                 "https://lh4.googleusercontent.com/K1UcfFaxsIbnFcu92kaOZyWBkWNNH61R1cL_k9IFy1DL3iV238HUZsqDvoubbk8pjq7Y6yu0Vf0T6jNAX4UHefWbMre-PUJsPq2YOztooTtHKvOjFIjSyPAfkkUu3rcKUB_mjW-P=s0"
+],
         description: "",
         answer: "mcdonald's",
         soundId: "sound1"
@@ -135,7 +137,9 @@ const questions = [
         soundId: "sound3"
       },
       {
-        image: "https://m.media-amazon.com/images/I/51v65ntrdXL._AC_UF1000,1000_QL80_.jpg",
+        images: ["https://m.media-amazon.com/images/I/51v65ntrdXL._AC_UF1000,1000_QL80_.jpg",
+                 "https://www.oreca.com/wp-content/uploads/2017/04/vw-logo.png"
+],
         description: "",
         answer: "volkswagen",
         soundId: "sound4"
@@ -275,7 +279,7 @@ const questions = [
         soundId: "sound9"
       },
       {
-        images: ["https://static.wikia.nocookie.net/among-us/images/3/35/Among_Us_Icon.png/revision/latest?cb=20220127210916&path-prefix=fr",
+        images: ["https://preview.redd.it/w0lmb8i7odo51.png?width=640&crop=smart&auto=webp&s=82a5726a72b8f635114261681e066f0db26d5751",
                  "https://logos-marques.com/wp-content/uploads/2022/07/Among-Us-Logo.png"
 ],
         description: "",
@@ -367,7 +371,7 @@ const questions = [
         soundId: "sound9"
       },
       {
-        images: ["https://static.wikia.nocookie.net/logo-quiz/images/1/1d/Lv5_number_44_.png/revision/latest/scale-to-width-down/300?cb=20221012164647",
+        images: ["https://cdn-icons-png.flaticon.com/512/732/732236.png",
                  "https://logo-marque.com/wp-content/uploads/2020/09/Pepsi-Logo.png"
 ],
         description: "",
@@ -599,7 +603,7 @@ const questions = [
         soundId: "sound9"
       },
       {
-        images: ["https://slicedesign.co.uk/wp-content/uploads/2017/02/char-edit-sam-610x201.jpg",
+        images: ["https://api.triviacreator.com/v1/imgs/quiz/10-62f5e7d5-2d20-4ea0-afc9-06c8ed11e5ee.png",
                 "https://logo-marque.com/wp-content/uploads/2020/04/Samsung-Logo-1993-2005-650x366.jpg"
 ],
         description: "",
@@ -1091,10 +1095,10 @@ const questions = [
         description: "",
         answer: "versace",
         soundId: "sound9"
-      }, // TOUT EST BON
+      },
       {
         images: ["https://100-pics.net/images/answers/fr/logos/logos_6714_974772.jpeg",
-                 "https://logo-marque.com/wp-content/uploads/2022/03/Evian-Logo-650x366.png"
+                 "https://logo-marque.com/wp-content/uploads/2022/03/Evian-Logo-1999-2013-650x366.jpg"
 ],
         description: "",
         answer: "evian",
@@ -1376,6 +1380,27 @@ document.getElementById("replayBtn").style.display = "inline";
   }, 1500);
 }
 
+function levenshtein(a, b) {
+  const matrix = Array.from({ length: b.length + 1 }, (_, i) =>
+    Array(a.length + 1).fill(0)
+  );
+
+  for (let i = 0; i <= b.length; i++) matrix[i][0] = i;
+  for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
+
+  for (let i = 1; i <= b.length; i++) {
+    for (let j = 1; j <= a.length; j++) {
+      const cost = a[j - 1] === b[i - 1] ? 0 : 1;
+      matrix[i][j] = Math.min(
+        matrix[i - 1][j] + 1,
+        matrix[i][j - 1] + 1,
+        matrix[i - 1][j - 1] + cost
+      );
+    }
+  }
+  return matrix[b.length][a.length];
+}
+
 
 
 function checkAnswer() {
@@ -1383,7 +1408,7 @@ function checkAnswer() {
   const q = questions[currentQuestion];
   const correct = q.answer.toLowerCase();
 
-if (userAnswer === correct) {
+if (levenshtein(userAnswer, correct) <= 2) {
   document.getElementById(q.soundId).play();
   score++;
   document.getElementById("score").textContent = "Score : " + score;
