@@ -47,6 +47,20 @@
   transition: width 0.3s ease-in-out;
 }
 
+.texte-rouge {
+  color: red;
+}
+
+.emoji-warning {
+  color: red; /* Facultatif ici si tu veux la même couleur que le texte */
+  font-size: 2rem;
+}
+
+.texte-infos {
+  line-height: 1.8; /* ou essaie 2 pour encore plus d’espace */
+}
+
+
   </style>
 </head>
 <body>
@@ -70,10 +84,13 @@
   text-align: center;
 ">
   <h2>Bienvenue dans "Logo Quiz"</h2>
+<p class="texte-infos">
   <p>🔍 Tu vas voir s'afficher un logo, à toi de retrouver la marque correspondante !<br>
   ✍️ Tape ta réponse dans la case prévue, puis valide avec "Valider" ou la touche Entrée.<br>
   ✅ Si tu trouves la bonne réponse, tu gagnes 1 point.<br>
-  ⏭ Tu peux passer une question avec le bouton "Passer", mais attention cela te fais perdre 1 points.</p>
+  ⏭ Tu peux passer une question avec le bouton "Passer", mais attention cela te fait perdre 1 point.<br>
+  ♫  Tu peux aussi couper la musique en cliquant sur 🔊 en haut à droite.</p>
+<p class="texte-rouge"><span class="emoji-warning">⚠</span>  <strong>Pour une utilisation optimale, ne pas mettre la page en mode sombre <span class="emoji-warning">⚠</span></p>
   <button onclick="startGame()" style="padding: 10px 20px; font-size: 18px; margin-top: 20px;">Commencer le jeu</button>
 </div>
 
@@ -723,7 +740,7 @@ const questions = [
         soundId: "sound9"
       },
       {
-        images: ["https://gravosteel.com/1998-thickbox_default/sticker-red-bull-couleurs-2.jpg",
+        images: ["https://f1news.fr/wp-content/uploads/2018/04/redbull-logo.png",
                 "https://logo-marque.com/wp-content/uploads/2020/11/Red-Bull-Logo-650x366.png"
 ],
         description: "",
@@ -876,7 +893,7 @@ const questions = [
       },
       {
         images: ["https://logo-marque.com/wp-content/uploads/2020/05/WhatsApp-Symbole-650x366.jpg",
-                 "https://logo-marque.com/wp-content/uploads/2020/06/WhatsApp-Logo-Histoire-650x276.jpg"
+                 "https://logo-marque.com/wp-content/uploads/2020/05/WhatsApp-Embleme.jpg"
 ],
         description: "",
         answer: "whatsapp",
@@ -1007,7 +1024,7 @@ const questions = [
         description: "",
         answer: "meta",
         soundId: "sound9"
-      }, // 115
+      },
       {
         images: ["https://logosandtypes.com/wp-content/uploads/2020/11/Shopify.png",
                  "https://logo-marque.com/wp-content/uploads/2020/11/Shopify-Logo-650x366.png"
@@ -1255,7 +1272,7 @@ const questions = [
         description: "",
         answer: "linkedin",
         soundId: "sound9"
-      }, // 146
+      },
       {
         images: ["https://www.1min30.com/wp-content/uploads/2018/07/Symbole-Allianz.jpg",
                  "https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/themes/2160029315/settings_images/b2e5ed-f8bc-d3a-6184-f014fdf6320_Allianz_logo_logotype.png"
@@ -1415,8 +1432,335 @@ const questions = [
         description: "",
         answer: "easyjet",
         soundId: "sound9"
-      }
-
+      },
+      {
+        images: ["https://static.wikia.nocookie.net/586a0e96-d2f0-449f-ae2a-27cc2adbc971",
+                 "https://logo-marque.com/wp-content/uploads/2020/11/National-Basketball-Association-Logo-650x366.png"
+],
+        description: "",
+        answer: "nba",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://logo-marque.com/wp-content/uploads/2021/09/Lexus-Logo-650x366.png",
+                 "https://logo-marque.com/wp-content/uploads/2021/09/Lexus-Symbole-650x366.jpg"
+],
+        description: "",
+        answer: "lexus",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://www.proprofs.com/quiz-school/user_upload/ckeditor/Snickers.jpg",
+                 "https://1000logos.net/wp-content/uploads/2020/06/Snickers-Logo.png"
+],
+        description: "",
+        answer: "snickers",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://logo-marque.com/wp-content/uploads/2020/09/Dove-Symbole-650x366.png",
+                 "https://logo-marque.com/wp-content/uploads/2020/09/Dove-Logo-650x366.png"
+],
+        description: "",
+        answer: "dove",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://www.quizz.biz/uploads/quizz/1137115/mobile/2_pvgEk.webp",
+                 "https://logo-marque.com/wp-content/uploads/2021/12/MMs-Logo-650x366.png"
+],
+        description: "",
+        answer: "m&m's",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://logosquiz.net/data/logosquizzfrance/images/babybel.png",
+                 "https://seeklogo.com/images/B/babybel-logo-AB2CD599BF-seeklogo.com.png"
+],
+        description: "",
+        answer: "babybel",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://www.quizz.biz/uploads/quizz/1704526/mobile/2_7bvK8.webp",
+                 "https://www.les-reponses.fr/wp-content/uploads/2014/10/logo-boursin-feuille-dore-point-rouge.jpg"
+],
+        description: "",
+        answer: "boursin",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://logic-design.fr/wp-content/uploads/2022/03/CAS-VITTEL-V-FOND-RED-1.jpg",
+                 "https://www.soscience.org/wp-content/uploads/2023/03/vittel-logo-300x122.jpg"
+],
+        description: "",
+        answer: "vittel",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://1000logos.net/wp-content/uploads/2020/09/Logo-S-Pellegrino.jpg",
+                 "https://logo-marque.com/wp-content/uploads/2022/03/San-Pellegrino-Logo-650x366.png"
+],
+        description: "",
+        answer: "san pellegrino",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://logo-marque.com/wp-content/uploads/2021/03/Audi-Logo-650x366.png",
+                 "https://logo-marque.com/wp-content/uploads/2021/03/Audi-Embleme-650x366.jpg"
+],
+        description: "",
+        answer: "audi",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://www.quizz.biz/uploads/quizz/1153664/mobile/8_7bKzj.webp",
+                 "https://logonoid.com/images/cote-dor-logo.jpg"
+],
+        description: "",
+        answer: "cote d'or",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://yt3.googleusercontent.com/xTe_JZ9MGButzL-omLCCefu1Iqj_nF0Qn6CcrdYI0z5O68M50RJT4EWdDdBjGQWiL27UFLVayA=s900-c-k-c0x00ffffff-no-rj",
+                 "https://www.grandeecolenumerique.fr/sites/default/files/onisep.png"
+],
+        description: "",
+        answer: "onisep",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://logosquiz.net/data/logoquiz/images/milka_2.png",
+                 "https://logos-marques.com/wp-content/uploads/2021/06/Milka-logo.png"
+],
+        description: "",
+        answer: "milka",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://www.1min30.com/wp-content/uploads/2024/04/Boulanger-Square_orange-et-blanc1-1.png",
+                 "https://www.franchise-fff.com/wp-content/uploads/2023/01/logo-boulanger.png"
+],
+        description: "",
+        answer: "boulanger",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://brandemia.org/sites/default/files/sites/default/files/monograma_paco_rabanne-antes.jpg",
+                 "https://brandslogos.com/wp-content/uploads/images/large/paco-rabanne-logo-black-and-white.png"
+],
+        description: "",
+        answer: "paco rabanne",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://static.vecteezy.com/system/resources/previews/017/396/812/non_2x/microsoft-power-point-mobile-apps-logo-free-png.png",
+                 "https://img.freepik.com/vecteurs-premium/logo-microsoft-powerpoint-logiciel-pour-preparation-visualisation-presentations-microsoft-office-365-logo-microsoft-corporation-logiciel-editorial_661108-17054.jpg?semt=ais_hybrid&w=740"
+],
+        description: "",
+        answer: "powerpoint",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://logodownload.org/wp-content/uploads/2020/04/excel-logo-0.png",
+                 "https://img.freepik.com/vecteurs-premium/logo-microsoft-excel-est-programme-feuille-calcul-logo-microsoft-office-365-est-logiciel-editorial-microsoft-corporation_661108-17045.jpg?semt=ais_hybrid&w=740"
+],
+        description: "",
+        answer: "excel",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://upload.wikimedia.org/wikipedia/commons/0/0e/Logo-bonobo.jpg",
+                 "https://www.chamnord.com/wp-content/uploads/2019/08/bonobo_logo_chamnord.png"
+],
+        description: "",
+        answer: "bonobo",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://1000logos.net/wp-content/uploads/2020/04/Emblem-Celio.jpg",
+                 "https://leparcduluc.fr/wp-content/uploads/2022/08/Celios_logo.svg.png"
+],
+        description: "",
+        answer: "celio",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://jobs.courir.com/wp-content/uploads/sites/254/2022/05/Courir_LogoV_Neg-2.png",
+                 "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Courir_%28logo%29.svg/1200px-Courir_%28logo%29.svg.png"
+],
+        description: "",
+        answer: "courir",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://coeurdejaures.com/wp-content/uploads/2023/05/LOGO-HISTOIRE-DOR.jpg",
+                 "https://rivetoile.com/wp-content/uploads/2022/04/Histoire-d_Or.png"
+],
+        description: "",
+        answer: "histoire d'or",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://play-lh.googleusercontent.com/3dtm-SzOrGGf9YWvoYorbS4fz3jr_nglWCLmWUIi_uX_VSWoIwLAhl9vVLhMYTLRO_Q",
+                 "https://logo-marque.com/wp-content/uploads/2020/11/Yves-Rocher-Logo-650x366.png"
+],
+        description: "",
+        answer: "yves rocher",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://www.123-stickers.com/8606-thickbox/autocollant-noeud-eden-park.jpg",
+                 "https://www.lunettesgrasset.com/wp-content/uploads/2020/10/logo-Eden-Park-2020.png"
+],
+        description: "",
+        answer: "eden park",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://1000logos.net/wp-content/uploads/2020/09/Logo-Lindt.jpg",
+                 "https://1000logos.net/wp-content/uploads/2020/07/Lindt-Logo.png"
+],
+        description: "",
+        answer: "lindt",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://www.1min30.com/wp-content/uploads/2018/01/logo-Gucci.jpg",
+                 "https://images.seeklogo.com/logo-png/6/2/gucci-logo-png_seeklogo-64069.png"
+],
+        description: "",
+        answer: "gucci",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://chiever.nl/wp-content/uploads/caterpillar-lang-3.jpg",
+                 "https://logos-marques.com/cat-logo/cat-logo-2/"
+],
+        description: "",
+        answer: "cat",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://companieslogo.com/img/orig/7751.T-ed8c12ba.png?t=1720244490",
+                 "https://i1.adis.ws/i/canon/canon-press-centre-canon-logo_301414581785538?w=550&qlt=100"
+],
+        description: "",
+        answer: "canon",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://pbs.twimg.com/media/FM3QIOGUYAI48K_.png",
+                 "https://media.proprofs.com/images/QM/user_images/2503852/New%20Project%20-%202021-01-29T161842_448.jpg"
+],
+        description: "",
+        answer: "dhl",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://u.dpd.com.pl/img/DPDLogo_OG.png",
+                 "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/DPD_logo%28red%292015.png/1200px-DPD_logo%28red%292015.png"
+],
+        description: "",
+        answer: "dpd",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://logo-marque.com/wp-content/uploads/2020/11/Giorgio-Armani-Embleme-650x366.png",
+                 "https://logo-marque.com/wp-content/uploads/2020/11/Giorgio-Armani-Logo-650x366.png"
+],
+        description: "",
+        answer: "giorgio armani",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://s3-symbol-logo.tradingview.com/edenred--600.png",
+                 "https://companieslogo.com/img/orig/EDEN.PA_BIG-ce193dc5.png?t=1720244491"
+],
+        description: "",
+        answer: "edenred",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://images.ctfassets.net/qozw5xyqia8b/7IZntf11WWrhGetoerFfDl/631caac138ae5f227c1720bdd2a045eb/ariel_logo_big_resized.png",
+                 "https://logos-marques.com/wp-content/uploads/2024/03/Ariel-Logo.jpg"
+],
+        description: "",
+        answer: "ariel",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://stickauto.fr/2286/seat-cupra-new-logo-simple.jpg",
+                 "https://cdn.worldvectorlogo.com/logos/cupra.svg"
+],
+        description: "",
+        answer: "cupra",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://play-lh.googleusercontent.com/uJjtybgwoiYkG_6zSdL8HwwWdc3-VhlYDWwU4cIkka0wzk-ZkwqquJj1tETHfA1sOGc",
+                 "https://www.silvereco.fr/wp-content/uploads/2023/02/logo-macadam.png"
+],
+        description: "",
+        answer: "macadam",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://logo-marque.com/wp-content/uploads/2020/01/Garnier-Logo-650x366.png",
+                 "https://logo-marque.com/wp-content/uploads/2020/01/Garnier-Logo-2021-present-650x366.jpg"
+],
+        description: "",
+        answer: "garnier",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://media.baamboozle.com/uploads/images/410104/1640756341_8569.jpeg",
+                 "https://logos-marques.com/wp-content/uploads/2021/06/Nutella-Logo.jpg"
+],
+        description: "",
+        answer: "nutella",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/5f/b2/25/5fb22511-cfa2-dc89-4f28-bf9d58cf3608/AppIcon-0-0-1x_U007ephone-0-1-0-sRGB-85-220.png/1200x630wa.png",
+                 "https://images.moneyvox.fr/i/media/11l/011686l2c5.jpg"
+],
+        description: "",
+        answer: "bforbank",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh4XY0Dp_lodmCl1JVApxTVdWpUoAPbFDWWizzlG4NrZHHwTZqLDNEMGKVsPCFhCvyiR81K0rkurweqwGjEEMlRUzHvujrVZqUdArXBugbJmaE6x5AxuBYMeQ7LnR1ySAHOEYDY8t6E4ho/s1600/transavia1.jpg",
+                 "https://www.merci-facteur.com/v2017/img/logo/modele-lettre/675.png"
+],
+        description: "",
+        answer: "transavia",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://logosquiz.net/data/logoquiz-perfect/images/_688.png",
+                 "https://turbologo.com/articles/wp-content/uploads/2019/12/Fedex-logo.png"
+],
+        description: "",
+        answer: "fedex",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://companieslogo.com/img/orig/COLM-741ab70f.png?t=1720244491",
+                 "https://logo-marque.com/wp-content/uploads/2020/12/Columbia-Embleme-650x366.png"
+],
+        description: "",
+        answer: "columbia",
+        soundId: "sound9"
+      },
+      {
+        images: ["https://www.itouchapps.net/images/whats-that-logo/jeep.png",
+                 "https://logo-marque.com/wp-content/uploads/2021/09/Jeep-Logo-1993-present-650x366.jpg"
+],
+        description: "",
+        answer: "jeep",
+        soundId: "sound9"
+      } // 207
 
     
 
